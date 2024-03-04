@@ -131,4 +131,4 @@ func SummaTsifr(a int) {
 		a /= 10
 	}
 	fmt.Println(sum)
-}
+
