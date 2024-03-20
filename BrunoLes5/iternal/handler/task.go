@@ -1,10 +1,9 @@
-package main
+package iternal
 
 import (
 	"encoding/json"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"log"
 	"net/http"
 	"os"
 	"strconv"
@@ -188,21 +187,3 @@ func (t *TasksResponse) listTasks(c *gin.Context) {
 }
 
 //var tasks = make(map[uint]Task)
-
-func main() {
-	tasks := TasksResponse{Tasks: make([]Task, 0, 10), Total: 0}
-	err := tasks.loadTasksFromFile()
-	if err != nil {
-		log.Fatal(err)
-	}
-	r := gin.Default()
-
-	r.GET("/all", tasks.getAllTasks)
-	r.POST("/task", tasks.createTask)
-	r.PUT("/task/:id", tasks.updateTask)
-	r.DELETE("/delete/:id", tasks.deleteTask)
-	r.GET("/filterall", tasks.getFilterAllTasks)
-	r.GET("/list", tasks.listTasks)
-
-	r.Run(":8080")
-}
